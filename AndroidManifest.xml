@@ -8,19 +8,16 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+   <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Include next permission if you want to allow UIL to cache images on SD card -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -44,12 +41,17 @@
             	Adapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter的类，
             	这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
             	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+            	
+            	If you want to change the page's title of auth, you should extends the AuthorizeAdapter 
+            	and set the below android:value  
             -->
             <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />
             
             <!--
             	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
             	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+            	
+            	The platform of Dropbox uses SSO that must set the below inter-filter
             -->
             <intent-filter>
                 <data android:scheme="db-7janx53ilz11gbs" />
